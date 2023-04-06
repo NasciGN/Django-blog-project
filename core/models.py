@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from stdimage import StdImageField
 # Create your models here.
 
 
@@ -23,11 +23,20 @@ class Post(models.Model):
     dthr_Criado = models.DateTimeField(auto_now_add=True)
     dthr_Publicado = models.DateTimeField(auto_now=True)
     autor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts_autor')
+    image = StdImageField('Imagem', upload_to='posts',
+                          variations={'thumb': {
+                              'width': 440,
+                              'height': 440,
+                              'crop': True
+                          }},
+                          blank=True, null=True
+                        )
 
     class Meta:
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
         ordering = ('-dthr_Publicado',)
+
     
     def __str__(self):
         return self.titulo

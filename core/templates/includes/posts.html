@@ -7,7 +7,7 @@
             <div class="row align-items-center">
                 <div class="col-12 col-lg-5">
                     <div class="image-wrapper">
-                        <img src="{% static 'assets/images/sq1.jpg' %}" alt="Mobirise Website Builder">
+                        <img src="{{ p.image.thumb.url }}" alt="Mobirise Website Builder">
                     </div>
                 </div>
                 <div class="col-12 col-lg">
@@ -16,7 +16,10 @@
                             <strong>{{p.titulo}}</strong>
                         </h6>
                         <p class="mbr-text mbr-fonts-style mb-4 display-4">
-                            {{ p.corpo }}</p>
+                            {{ p.corpo|truncatechars:250}}</p>
+                    </div>
+                     <div class="mbr-section-btn align-left">
+                        <a class="btn btn-primary display-4" href="{% url 'postDetail' p.slug %}">Ler mais</a>
                     </div>
                 </div>
             </div>
